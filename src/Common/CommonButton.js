@@ -1,7 +1,7 @@
 import { Text,TouchableOpacity,StyleSheet } from 'react-native'
 import React from 'react'
 
-const CommonButton = ({onpress, title, textColor}) => {
+const CommonButton = ({onpress, title, textColor, fontSized}) => {
   return (
     <TouchableOpacity style={styles.input} onpress={()=>onpress()}>
       <Text style={{color:textColor}}>{title}</Text>

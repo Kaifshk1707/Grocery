@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet,Image, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import {createStackNavigator} from "@react-navigation/stack";
 import { useNavigation } from '@react-navigation/native'
 import CustomTextInput from '../src/Common/CustomTextInput';
@@ -17,7 +17,9 @@ const index = () => {
   )
 }
 const Login = () => {
-  const navigation=useNavigation()
+  const navigation=useNavigation();
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
   return (
   
     <View style={styles.container}>
