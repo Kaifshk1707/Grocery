@@ -1,11 +1,21 @@
 import { View, TextInput, StyleSheet, Image } from 'react-native'
 import React from 'react'
 
-const CustomTextInput = ({value, onChangeText, type, placeholder, icon}) => {
+const CustomTextInput = ({value, onChangeText, type, placeholder, icon, keyboardType}) => {
   return (
     <View style={styles.input}>
       <Image source={icon} style={{width:23, height:23}}/>
-      <TextInput placeholder={placeholder} style={{marginLeft:15}} secureTextEntry={type ? true : false}/>
+      <TextInput 
+      value={value} 
+      onChangeText={(txt)=>{
+        onChangeText(txt)
+      }} 
+      placeholder={placeholder} 
+      style={{marginLeft:15}} 
+      secureTextEntry={type ? true : false}
+      keyboardType={keyboardType ? keyboardType: 'default'}
+
+      />
     </View>
   )
 }

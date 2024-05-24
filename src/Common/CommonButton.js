@@ -1,23 +1,24 @@
-import { Text,TouchableOpacity,StyleSheet } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const CommonButton = ({onpress, title, textColor, fontSized}) => {
+const CommonButton = ({ onPress, title, textColor, bgColor, disabled,Login  }) => {
   return (
-    <TouchableOpacity style={styles.input} onpress={()=>onpress()}>
-      <Text style={{color:textColor}}>{title}</Text>
+    <TouchableOpacity disabled={disabled } style={[styles.button, { backgroundColor: bgColor }]} onPress={onPress} >
+      <Text style={{ color: textColor }}>{title}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default CommonButton
+export default CommonButton;
+
 const styles = StyleSheet.create({
- input:{backgroundColor:'#000',
-    justifyContent:'center',
-    alignItems:'center',
-    height:50,
-    width:330,
-    borderRadius:10,
-    alignSelf:'center',
-    marginTop:20,
-    fontSize:40,}
-})
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 330,
+    borderRadius: 10,
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+});
