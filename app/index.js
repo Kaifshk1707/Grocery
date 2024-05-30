@@ -1,116 +1,68 @@
-// Index.js file
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import CustomTextInput from '../src/Common/CustomTextInput';
-import CommonButton from '../src/Common/CommonButton';
-import SignUp from './../src/Screens/SignUp';
-import Home from './../src/Screens/Home';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './../app/Store'; 
+import MainContainer from './../app/MainContainer'; 
 
-const Stack = createStackNavigator();
-
-const Index = () => {
+const App = () => {
   return (
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      </Stack.Navigator>
+    <Provider store={store}>
+        <MainContainer />
+    </Provider>
   );
 };
 
-const Login = () => {
-  const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [badEmail, setBadEmail] = useState(false);
-  const [badPassword, setBadPassword] = useState(false);
+export default App;
 
-  const login = async () => {
-    if (email === '') {
-      setBadEmail(true);
-    } else {
-      setBadEmail(false);
-      if (password === '') {
-        setBadPassword(true);
-      } else {
-        setBadPassword(false);
-        await getData();
-      }
-    }
-  };
+//my Prodcut work code
+// // src/components/MyProducts.js
+// import React, { useState } from 'react';
+// import { View, Image, Text, TouchableOpacity } from 'react-native';
 
-  const getData = async () => {
-    const storedEmail = await AsyncStorage.getItem('EMAIL');
-    const storedPassword = await AsyncStorage.getItem('PASSWORD');
-    console.log('Stored Email:', storedEmail, 'Stored Password:', storedPassword);
-    console.log('Entered Email:', email, 'Entered Password:', password);
-    if (email === storedEmail && password === storedPassword) {
-      navigation.navigate('Home');
-    } else {
-      alert('Wrong email or password');
-    }
-  };
+// const MyProducts = ({ item, addToWishList }) => {
+//   const [cart, setCart] = useState([]);
 
-  return (
-    <View style={styles.container}>
-      <Image source={require('./../assets/images/2.png')} style={styles.image} />
-      <Text style={styles.text}>Login</Text>
-      <CustomTextInput
-        placeholder={'Enter your email'}
-        icon={require('./../assets/images/m.png')}
-        value={email}
-        onChangeText={(txt) => setEmail(txt)}
-      />
-      {badEmail && <Text style={{ marginTop: 10, alignSelf: 'center', color: 'red' }}>Please Enter Email</Text>}
+//   const addToCart = (product) => {
+//     setCart([...cart, product]);
+//   };
 
-      <CustomTextInput
-        placeholder={'Enter your password'}
-        icon={require('./../assets/images/p.png')}
-        type={'password'}
-        value={password}
-        onChangeText={(txt) => setPassword(txt)}
-      />
-      {badPassword && <Text style={{ marginTop: 10, alignSelf: 'center', color: 'red' }}>Please Enter Password</Text>}
+//   const removeFromCart = (product) => {
+//     setCart(cart.filter((cartItem) => cartItem.id !== product.id));
+//   };
 
-      <CommonButton title={'Login'} bgColor={'#000'} textColor={'#fff'} onPress={login} />
+//   const isInCart = (product) => {
+//     return cart.some((cartItem) => cartItem.id === product.id);
+//   };
 
-      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-        <Text style={styles.text2}>Create New Account</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+//   return (
+//     <View style={{ width: 200, height: 200, borderRadius: 10, elevation: 5, backgroundColor: '#fff', marginLeft: 20, marginBottom: 10 }}>
+//       <Image source={item.image} style={{ width: '100%', height: '61%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} />
+//       <Text style={{ marginLeft: 10, marginTop: 10, fontSize: 15, fontWeight: '600' }}>{item.name}</Text>
+//       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10, marginTop: 1, alignItems: 'center' }}>
+//         <Text style={{ fontSize: 15, fontWeight: '600' }}>{'₹' + item.price}</Text>
+//         {isInCart(item) ? (
+//           <TouchableOpacity
+//             style={{ borderWidth: 0.3, borderRadius: 10, paddingLeft: 8, paddingRight: 5, paddingBottom: 10, paddingTop: 10 }}
+//             onPress={() => removeFromCart(item)}
+//           >
+//             <Text style={{ color: '#000' }}>Remove from Cart</Text>
+//           </TouchableOpacity>
+//         ) : (
+//           <TouchableOpacity
+//             style={{ borderWidth: 0.3, borderRadius: 10, paddingLeft: 8, paddingRight: 5, paddingBottom: 10, paddingTop: 10 }}
+//             onPress={() => addToCart(item)}
+//           >
+//             <Text style={{ color: '#000' }}>Add to Cart</Text>
+//           </TouchableOpacity>
+//         )}
+//       </View>
+//       <TouchableOpacity
+//         style={{ width: 40, height: 35, backgroundColor: '#fff', borderRadius: 20, elevation: 5, position: 'absolute', top: 8, right: 8, justifyContent: 'center', alignItems: 'center' }}
+//         onPress={() => addToWishList(item)}
+//       >
+//         <Image source={require('./../images/heart.png')} style={{ width: 20, height: 20 }} />
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    alignSelf: 'center',
-    marginTop: 60,
-  },
-  text: {
-    marginTop: 50,
-    alignSelf: 'center',
-    fontSize: 27,
-    fontWeight: 'bold',
-    color: "black",
-  },
-  text2: {
-    fontSize: 18,
-    alignSelf: 'center',
-    marginTop: 15,
-    fontWeight: '500',
-    textDecorationLine: 'underline',
-  }
-});
-
-export default Index;
+// export default MyProducts;
