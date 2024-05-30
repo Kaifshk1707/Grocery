@@ -2,15 +2,14 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../ActionType';
 
 
-const Reducer = (state = [], action) => {
-  switch (action.type) {
+const Reducer = (state = [], actions) => {
+  switch (actions.type) {
     case ADD_TO_CART:
-      return [...state, action.payload];
-
+      return [...state, actions.payload];
     case REMOVE_FROM_CART:
-
-      return state.filter((item, index) => index !== action.payload);
-      
+      const deleteArray = state.filter((item, index) => {
+        return index !== actions.payload;
+      })
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import CommonButton from './../Common/CommonButton';
 
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
-  const cartData = useSelector(state => state.Cart); // Correct key used here
+  const cartData = useSelector(state => state.Cart);
 
   const dispatch = useDispatch();
 

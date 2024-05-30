@@ -12,7 +12,7 @@ const Home = () => {
   const cart = useSelector((state) => state.cart);
   console.log(cart);
   const wishlist = useSelector((state) => state.wishlist);
-  // console.log(wishlist);
+  console.log(wishlist);
 
   return (
     <View style={styles.container}>
