@@ -6,13 +6,14 @@ import Search from './../bottom/Search';
 import Cart from './../bottom/Cart';
 import Wishlist from './../bottom/Wishlist';
 import Profile from './../bottom/Profile';
+import Reducer from '../redux/reducers/Reducer';
+import Reducer2 from '../redux/reducers/Reducer2';
 
 const Home = () => {
   const [selectedTab, setSelectedTab] = useState(0);
-  const cart = useSelector((state) => state.cart);
-  console.log(cart);
-  const wishlist = useSelector((state) => state.wishlist);
-  console.log(wishlist);
+  
+  const data = useSelector((state) => state);
+  // const wishlistData = useSelector((state) => state.Reducer2);
 
   return (
     <View style={styles.container}>
@@ -79,7 +80,7 @@ const Home = () => {
             />
             <View style={styles.bags}>
               <Text style={{ color: '#fff', fontWeight: '600' }}>
-                {cart.length}
+                {data.Reducer.length}
               </Text>
             </View>
           </TouchableOpacity>
@@ -98,7 +99,7 @@ const Home = () => {
           />
           <View style={styles.bags2}>
             <Text style={{ color: '#fff', fontWeight: '600' }}>
-              {wishlist.length}
+              {data.Reducer2.length}
             </Text>
           </View>
         </TouchableOpacity>

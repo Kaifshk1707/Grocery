@@ -1,26 +1,37 @@
-import { View, FlatList } from 'react-native'
-import React, { useState } from 'react'
-import CartItem from '../Common/CartItem';
+import { View, FlatList, Text } from 'react-native';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromWishlist } from '../redux/Actoins/Actoins';
-// on working React Native Ecommerce App - Add to cart and wishlist => Engineer Codewala
-const WishList = () => {
-  const [cartList,setCartList] = useState([]);
-  const cartData = useSelector(state => state.Reducer2);
-  const dispatch = useDispatch()
+import { addItemToCart, removeFromWishlist } from '../redux/Actoins/Actoins';
+import ProductItem from '../Common/ProductItem';
 
+const Wishlist = () => {
+  const cartData = useSelector(state => state.Reducer2);
+  const dispatch = useDispatch();
   return (
     <View style={{ flex: 1 }}>
-      <FlatList 
-      data={cartData} 
-      renderItem={({ item, index }) => {
-    return (<CartItem item={item}  RemoveItem={()=>{
-      dispatch(removeFromWishlist(index))
-    }}/>
-  );    
-  }}
-/>
+      {cartData && cartData.length > 0 ? (
+        <FlatList
+          data={cartData}
+          renderItem={({ item, index }) => {
+            return (
+              <ProductItem item={item}
+                isWishList={'asasfas'}
+                onRemoveFromWishList={() => {
+                  dispatch(removeFromWishlist(index))
+                }}
+                onAddToCart={(x) => {
+                  dispatch(addItemToCart(x));
+                }}
+              />
+            );
+          }}
+        />
+      ) : (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>No Items in Wishlist</Text>
+        </View>
+      )}
     </View>
-  )
-}
-export default WishList;
+  );
+};
+export default Wishlist;

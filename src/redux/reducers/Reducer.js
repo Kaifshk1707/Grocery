@@ -7,9 +7,10 @@ const Reducer = (state = [], actions) => {
     case ADD_TO_CART:
       return [...state, actions.payload];
     case REMOVE_FROM_CART:
-      const deleteArray = state.filter((item, index) => {
+      const deleteArray1 = state.filter((item, index) => {
         return index !== actions.payload;
       })
+      return deleteArray1
     default:
       return state;
   }

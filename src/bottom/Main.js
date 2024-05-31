@@ -53,7 +53,7 @@ const Main = () => {
         <Text style={{ marginTop: 20, marginLeft: 20, fontWeight: '600', fontSize: 16, color: '#000' }}>
           New T-shirts
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginRight: 15 }}>
           <FlatList data={tshirtList} horizontal showsHorizontalScrollIndicator={false} renderItem={({ item, index }) => {
             return (
               <CartItem item={item}
@@ -70,7 +70,7 @@ const Main = () => {
         <Text style={{ marginTop: 20, marginLeft: 20, fontWeight: '600', fontSize: 16, color: '#000' }}>
           New Jeans
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginRight: 15 }}>
           <FlatList data={jeansList} horizontal showsHorizontalScrollIndicator={false} renderItem={({ item, index }) => {
             return (
               <CartItem item={item}
@@ -87,7 +87,7 @@ const Main = () => {
         <Text style={{ marginTop: 20, marginLeft: 20, fontWeight: '600', fontSize: 16, color: '#000' }}>
           New Shirts
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginRight: 15 }}>
           <FlatList data={shirtList} horizontal showsHorizontalScrollIndicator={false} renderItem={({ item, index }) => {
             return (
               <CartItem item={item}
@@ -104,7 +104,7 @@ const Main = () => {
         <Text style={{ marginTop: 20, marginLeft: 20, fontWeight: '600', fontSize: 16, color: '#000' }}>
           New Shoes
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginRight: 15 }}>
           <FlatList data={shoesList} horizontal showsHorizontalScrollIndicator={false} renderItem={({ item, index }) => {
             return (
               <CartItem item={item}
@@ -121,7 +121,7 @@ const Main = () => {
         <Text style={{ marginTop: 20, marginLeft: 20, fontWeight: '600', fontSize: 16, color: '#000' }}>
           New Jacket
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginRight: 15 }}>
           <FlatList data={jacketList} horizontal showsHorizontalScrollIndicator={false} renderItem={({ item, index }) => {
             return (
               <CartItem item={item}
@@ -138,7 +138,7 @@ const Main = () => {
         <Text style={{ marginTop: 20, marginLeft: 20, fontWeight: '600', fontSize: 16, color: '#000' }}>
           New Trouser
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginRight: 15 }}>
           <FlatList data={trouserList} horizontal showsHorizontalScrollIndicator={false} renderItem={({ item, index }) => {
             return (
               <CartItem item={item}
@@ -155,7 +155,7 @@ const Main = () => {
         <Text style={{ marginTop: 20, marginLeft: 20, fontWeight: '600', fontSize: 16, color: '#000' }}>
           New Watch
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginBottom: 80, marginRight: 15 }}>
           <FlatList data={watchList} horizontal showsHorizontalScrollIndicator={false} renderItem={({ item, index }) => {
             return (
               <CartItem item={item}

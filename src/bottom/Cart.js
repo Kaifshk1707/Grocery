@@ -1,13 +1,12 @@
 import { View, FlatList, Text } from 'react-native';
-import React, { useState } from 'react';
-import CartItem from '../Common/CartItem';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist, removeFromCart } from '../redux/Actoins/Actoins';
 import CommonButton from './../Common/CommonButton';
+import ProductItem from '../Common/ProductItem';
 
 const Cart = () => {
-  const [cartList, setCartList] = useState([]);
-  const cartData = useSelector(state => state.Cart);
+  const cartData = useSelector(state => state.Reducer);
 
   const dispatch = useDispatch();
 
@@ -18,14 +17,13 @@ const Cart = () => {
           data={cartData}
           renderItem={({ item, index }) => {
             return (
-              <CartItem
-                item={item}
-                onAddWishList={item => {
-                  dispatch(addToWishlist(item));
+              <ProductItem
+                onAddWishlist={(x) => {
+                  dispatch(addToWishlist(x))
                 }}
-                index={index}
-                removeFromCart={data => {
-                  dispatch(removeFromCart(data));
+                item={item}
+                onRemoveItem={() => {
+                  dispatch(removeFromCart(index));
                 }}
               />
             );
@@ -39,7 +37,7 @@ const Cart = () => {
       {
         cartData && cartData.length > 0 ? (
           <View>
-            <CommonButton bgColor={'limegreen'} textColor={'red'} title={'CheckOut'} />
+            <CommonButton bgColor={'limegreen'} textColor={'red'} title={'ChekOut'} />
           </View>
         ) : null
       }
